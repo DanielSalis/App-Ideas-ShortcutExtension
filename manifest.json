@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "version": "0.0.1",
+    "name": "ShortcutExtension",
+    "description": "Go faster",
+    "author": "Daniel Amorim Vilela de Salis",
+    "browser_action": {
+        "default_title": "Shortcut Extension",
+        "default_popup": "index.html"
+    },
+    "permissions": [
+        "tabs"
+    ],
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+Space",
+                "mac": "Command+Shift+Space"
+            }
+        }
+    }
+}
