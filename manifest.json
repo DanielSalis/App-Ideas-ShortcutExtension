@@ -14,7 +14,7 @@
     "commands": {
         "_execute_browser_action": {
             "suggested_key": {
-                "default": "Ctrl+Shift+Space",
+                "default": "Ctrl+Space",
                 "mac": "Command+Shift+Space"
             }
         }

@@ -1,5 +1,5 @@
 const Commands = [
-    { key: 'github', name: 'github', url: 'https://github.com/' }
+    { key: 'gh', name: 'github', url: 'https://github.com' }
 ]
 
 const InputValue = document.querySelector('#searchInput');
@@ -12,25 +12,35 @@ const handleEvent = e => {
 }
 
 const ValidateData = value => {
-    const [command, level] = value.toLowerCase().split(",");
-    const Data = { value: command.split(":"), level };
+    const fullCommand = value.split(":");
+    const command = fullCommand[0].toLowerCase();
+    const auxiliarParamater = fullCommand[1];
+
+    const Data = { value: command, auxiliarParamater: auxiliarParamater };
     execute(Data);
 }
 
 const execute = (Data) => {
-    const { value } = Data;
+    debugger;
+    const { value, auxiliarParamater } = Data;
 
     const result = Commands.find(e => {
-        return e.key === value[0];
+        return e.key === value;
     });
 
     if (result) {
-        const url = result.url;
+        let url = result.url;
 
-        if (chrome.tabs) {
-            chrome.tabs.create({ url, active: true });
-        } else {
-            window.open(url, '_blank');
+        try {
+            url = `${url}/${auxiliarParamater}`;
+            if (chrome.tabs) {
+                chrome.tabs.create({ url, active: true });
+            } else {
+                window.open(url, '_blank');
+            }
+        }
+        catch {
+            alert('Parâmetro não encontrado');
         }
     }
 }
