@@ -1,38 +1,23 @@
-const Commands = [
-    { key: 'gh', name: 'github', url: 'https://github.com' }
-]
+const Commands = JSON.parse(localStorage.getItem("shortcuts"));
 
 const InputValue = document.querySelector('#searchInput');
 
 const handleEvent = e => {
     if (e.key === 'Enter' && InputValue.value !== '') {
         console.log("Enviar");
-        ValidateData(e.target.value);
+        execute(e.target.value);
     }
 }
 
-const ValidateData = value => {
-    const fullCommand = value.split(":");
-    const command = fullCommand[0].toLowerCase();
-    const auxiliarParamater = fullCommand[1];
-
-    const Data = { value: command, auxiliarParamater: auxiliarParamater };
-    execute(Data);
-}
-
-const execute = (Data) => {
-    debugger;
-    const { value, auxiliarParamater } = Data;
+const execute = (inputValue) => {
 
     const result = Commands.find(e => {
-        return e.key === value;
+        return e.key === inputValue;
     });
 
     if (result) {
-        let url = result.url;
-
         try {
-            url = `${url}/${auxiliarParamater}`;
+            let url = result.url;
             if (chrome.tabs) {
                 chrome.tabs.create({ url, active: true });
             } else {
@@ -44,7 +29,6 @@ const execute = (Data) => {
         }
     }
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
     InputValue.addEventListener("keydown", e => {
