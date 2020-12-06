@@ -1,6 +1,8 @@
+
 const Commands = JSON.parse(localStorage.getItem("shortcuts"));
 
 const InputValue = document.querySelector('#searchInput');
+const deleteAllIcon = document.getElementById("deleteAllIcon");
 
 const handleEvent = e => {
     if (e.key === 'Enter' && InputValue.value !== '') {
@@ -33,5 +35,12 @@ const execute = (inputValue) => {
 document.addEventListener("DOMContentLoaded", () => {
     InputValue.addEventListener("keydown", e => {
         handleEvent(e);
+    });
+    deleteAllIcon.addEventListener("click", e => {
+        localStorage.clear();
     })
 });
+
+// document.addEventListener("DOMContentLoaded", () => {
+
+// });
