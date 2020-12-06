@@ -16,6 +16,11 @@ const saveNewRoute = (originalRoute, shortcut) => {
     const shortcuts = JSON.parse(localStorage.getItem('shortcuts'));
     
     shortcuts ? addNewRoute(shortcuts, item) : createObject(item);
+
+    homeLink = document.createElement('a');
+    homeLink.href = '../../index.html';
+    homeLink.click();
+
 }
 
 const addNewRoute = (shortcuts, item) => {
