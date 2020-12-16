@@ -25,6 +25,20 @@
     margin-top: 10px;
 }
 
-#shortcuts-container-ul li{
+#shortcuts-container-ul{
+    width: 90%;
+}
+
+.delete-icon{
+    width: 20px;
+    height: 20px;
+}
+
+.edit-li{
     margin: 8px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
 }
